@@ -1,3 +1,4 @@
+import './sign-in-form.styles.scss';
 import { useEffect, useState } from 'react';
 import { getRedirectResult } from 'firebase/auth';
 import {
@@ -7,7 +8,6 @@ import {
   signInWithGooglePopup,
   signInWithGoogleRedirect,
 } from '../../utils/firebase/firebase.utils';
-import SignUpForm from '../../components/sign-up-form/sign-up-form.component';
 import FormInput from '../../components/form-input/form-input.component';
 import Button from '../../components/button/button.component';
 
@@ -16,7 +16,7 @@ const defaultformFields = {
   password: '',
 };
 
-const SignIn = () => {
+const SignInForm = () => {
   const [ formFields, setFormFields ] = useState(defaultformFields);
   const { email, password } = formFields;
 
@@ -33,9 +33,13 @@ const SignIn = () => {
     redirectResult();
   }, []);
 
+  const resetFormFields = () => {
+    setFormFields(defaultformFields);
+  };
+
   const logGoogleUser = async () => {
     const { user } = await signInWithGooglePopup();
-    const userDocRef = await createUserDocumentFromAuth(user);
+    await createUserDocumentFromAuth(user);
   };
 
   const handleChange = (event) => {
@@ -50,13 +54,23 @@ const SignIn = () => {
     try {
       const { user } = await signInWithCredentials(email, password);
       console.log(user);
+      resetFormFields();
     } catch (error) {
-      console.log(error);
+      switch (error.code) {
+        case 'auth/wrong-password':
+          alert('Incorect password for email');
+          break;
+        case 'auth/user-not-found':
+          alert('User not found');
+          break;
+        default:
+          console.log(error);
+      }
     }
   };
 
   return (
-    <div style={{ width: '30%' }}>
+    <div className="sign-in-container">
       <h2>I already have an account</h2>
       <span>Sign in with your email and password</span>
       <form onSubmit={ handleSubmit }>
@@ -79,13 +93,14 @@ const SignIn = () => {
         />
       
         <Button type="submit">Sign in</Button>
+        <div className="buttons-container">
+          <Button buttonType="google" onClick={ logGoogleUser } type="button">Sign With Google Popup</Button>
+          <Button buttonType="google" onClick={ signInWithGoogleRedirect } type="button">Sign With Google Redirect</Button>
+        </div>
       </form>
 
-      <Button buttonType="google" onClick={ logGoogleUser }>Sign With Google Popup</Button>
-      <Button buttonType="google" onClick={ signInWithGoogleRedirect }>Sign With Google Redirect</Button>
-      <SignUpForm />
     </div>
   );
 };
 
-export default SignIn;
+export default SignInForm;
