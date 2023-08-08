@@ -1,10 +1,9 @@
 import './sign-in-form.styles.scss';
 
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState } from 'react';
 import { getRedirectResult } from 'firebase/auth';
 import {
   auth,
-  createUserDocumentFromAuth,
   signInWithCredentials,
   signInWithGooglePopup,
   signInWithGoogleRedirect,
