@@ -8,9 +8,11 @@ import CartIcon from '../../components/cart-icon/cart-icon.component';
 import CartDropdown from '../../components/cart-dropdown/cart-dropdown.component';
 
 import './navigation.styles.scss';
+import { CartContext } from '../../contexts/cart.context';
 
 const Navigation = () => {
   const { currentUser } = useContext(UserContext);
+  const { cartIsOpened } = useContext(CartContext);
 
   return (
     <Fragment>
@@ -29,7 +31,7 @@ const Navigation = () => {
         </div>
         {/* TODO: Create context for dropdown that will contain state whether dropdown is opened or not
             TODO: Also this context should contain info about items that were added to the cart */}
-        <CartDropdown />
+        { cartIsOpened && <CartDropdown /> }
       </div>
       <Outlet />
     </Fragment>
