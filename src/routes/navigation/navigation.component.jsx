@@ -29,8 +29,6 @@ const Navigation = () => {
           )}
           <CartIcon />
         </div>
-        {/* TODO: Create context for dropdown that will contain state whether dropdown is opened or not
-            TODO: Also this context should contain info about items that were added to the cart */}
         { cartIsOpened && <CartDropdown /> }
       </div>
       <Outlet />
