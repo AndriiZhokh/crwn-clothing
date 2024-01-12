@@ -10,14 +10,17 @@ const CheckoutItem = ({ cartItem }) => {
         removeItemFromCart(id);
     };
 
+    const increaseQuantity = () => {};
+    const decreaseQuantity = () => {};
+
     return (
         <tr>
             <td><img src={ imageUrl } alt={ name }/></td>
             <td>{ name }</td>
             <td>
-                <Button buttonType='inverted'>{`${'<'}`}</Button>
+                <Button buttonType='inverted' onClick={decreaseQuantity}>{`${'<'}`}</Button>
                 { quantity }
-                <Button buttonType='inverted'>{`${'>'}`}</Button>
+                <Button buttonType='inverted' onClick={increaseQuantity}>{`${'>'}`}</Button>
             </td>
             <td>{ price }</td>
             <td>
