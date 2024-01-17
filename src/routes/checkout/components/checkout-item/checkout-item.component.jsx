@@ -27,13 +27,13 @@ const CheckoutItem = ({ cartItem }) => {
             <td><img src={ imageUrl } alt={ name }/></td>
             <td>{ name }</td>
             <td>
-                <Button buttonType='inverted' onClick={decreaseQuantity}>{`${'<'}`}</Button>
+                <Button buttonType='small' onClick={decreaseQuantity}>{`${'<'}`}</Button>
                 { quantity }
-                <Button buttonType='inverted' onClick={increaseQuantity}>{`${'>'}`}</Button>
+                <Button buttonType='small' onClick={increaseQuantity}>{`${'>'}`}</Button>
             </td>
             <td>{ price }</td>
             <td>
-                <Button buttonType='inverted' onClick={removeItem}>X</Button>
+                <Button buttonType='small' onClick={removeItem}>X</Button>
             </td>
         </tr>
     );
