@@ -1,3 +1,5 @@
+import './checkout.styles.scss';
+
 import { useContext, useEffect } from "react";
 import { CartContext } from "../../contexts/cart.context";
 import CheckoutItem from "./components/checkout-item/checkout-item.component";
@@ -13,7 +15,7 @@ const Checkout = () => {
 
     return (
         <div>
-            <table>
+            <table className='checkout-table'>
                 <thead>
                     <CheckoutHeader />
                 </thead>

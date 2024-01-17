@@ -1,3 +1,5 @@
+import './checkout-item.styles.scss';
+
 import { useContext } from "react";
 import Button from "../../../../components/button/button.component";
 import { CartContext } from "../../../../contexts/cart.context";
@@ -23,17 +25,23 @@ const CheckoutItem = ({ cartItem }) => {
     };
 
     return (
-        <tr>
-            <td><img src={ imageUrl } alt={ name }/></td>
+        <tr className='checkout-row'>
+            <td>
+                <img className='checkout-image' src={ imageUrl } alt={ name }/>
+            </td>
             <td>{ name }</td>
             <td>
-                <Button buttonType='small' onClick={decreaseQuantity}>{`${'<'}`}</Button>
-                { quantity }
-                <Button buttonType='small' onClick={increaseQuantity}>{`${'>'}`}</Button>
+                <div className="quantity-selector-container">
+                    <Button buttonType='small' onClick={decreaseQuantity}>{`${'<'}`}</Button>
+                    <span>{ quantity }</span>
+                    <Button buttonType='small' onClick={increaseQuantity}>{`${'>'}`}</Button>
+                </div>
             </td>
             <td>{ price }</td>
             <td>
-                <Button buttonType='small' onClick={removeItem}>X</Button>
+                <div>
+                    <Button buttonType='small' onClick={removeItem}>X</Button>
+                </div>
             </td>
         </tr>
     );
