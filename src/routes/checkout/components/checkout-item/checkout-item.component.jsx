@@ -3,6 +3,7 @@ import './checkout-item.styles.scss';
 import { useContext } from "react";
 import Button from "../../../../components/button/button.component";
 import { CartContext } from "../../../../contexts/cart.context";
+import QuantitySelector from '../../../../components/quantity-selector/quantity-selector.component';
 
 const CheckoutItem = ({ cartItem }) => {
     const { id, imageUrl, name, quantity, price } = cartItem;
@@ -20,13 +21,6 @@ const CheckoutItem = ({ cartItem }) => {
         }
     };
 
-    const increaseQuantity = () => {
-        updateQuantity(1);
-    };
-    const decreaseQuantity = () => {
-        updateQuantity(-1);
-    };
-
     return (
         <tr className='checkout-row'>
             <td>
@@ -34,11 +28,9 @@ const CheckoutItem = ({ cartItem }) => {
             </td>
             <td>{ name }</td>
             <td>
-                <div className="quantity-selector-container">
-                    <Button buttonType='small' onClick={decreaseQuantity}>{`${'<'}`}</Button>
-                    <span>{ quantity }</span>
-                    <Button buttonType='small' onClick={increaseQuantity}>{`${'>'}`}</Button>
-                </div>
+                <QuantitySelector
+                    quantity={ quantity }
+                    onQuantityChange={ updateQuantity } />
             </td>
             <td>{ price }</td>
             <td>
