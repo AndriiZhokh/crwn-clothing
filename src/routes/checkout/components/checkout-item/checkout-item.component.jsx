@@ -14,7 +14,10 @@ const CheckoutItem = ({ cartItem }) => {
 
     const updateQuantity = (val) => {
         const updatedItem = { ...cartItem, quantity: cartItem.quantity + val };
-        updateProduct(updatedItem);
+
+        if (updatedItem.quantity !== 0) {
+            updateProduct(updatedItem);
+        }
     };
 
     const increaseQuantity = () => {
