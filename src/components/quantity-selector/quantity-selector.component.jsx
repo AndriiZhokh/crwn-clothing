@@ -1,3 +1,5 @@
+import "./quantity-selector.styles.scss";
+
 import Button from "../button/button.component";
 
 const QuantitySelector = ({ quantity, onQuantityChange }) => {
