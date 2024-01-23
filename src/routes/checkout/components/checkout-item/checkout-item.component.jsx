@@ -1,7 +1,7 @@
-import './checkout-item.styles.scss';
+import { CheckoutTableRow, CheckoutTableImage } from './checkout-item.styles';
 
 import { useContext } from "react";
-import Button from "../../../../components/button/button.component";
+import Button, { BUTTON_TYPE_CLASSES } from "../../../../components/button/button.component";
 import { CartContext } from "../../../../contexts/cart.context";
 import QuantitySelector from '../../../../components/quantity-selector/quantity-selector.component';
 
@@ -22,9 +22,9 @@ const CheckoutItem = ({ cartItem }) => {
     };
 
     return (
-        <tr className='checkout-row'>
+        <CheckoutTableRow>
             <td>
-                <img className='checkout-image' src={ imageUrl } alt={ name }/>
+                <CheckoutTableImage src={ imageUrl } alt={ name }/>
             </td>
             <td>{ name }</td>
             <td>
@@ -35,10 +35,10 @@ const CheckoutItem = ({ cartItem }) => {
             <td>{ price }</td>
             <td>
                 <div>
-                    <Button buttonType='small' onClick={removeItem}>X</Button>
+                    <Button buttonType={ BUTTON_TYPE_CLASSES.small } onClick={removeItem}>X</Button>
                 </div>
             </td>
-        </tr>
+        </CheckoutTableRow>
     );
 }
 

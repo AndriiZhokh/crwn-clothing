@@ -1,6 +1,6 @@
 import "./quantity-selector.styles.scss";
 
-import Button from "../button/button.component";
+import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
 
 const QuantitySelector = ({ quantity, onQuantityChange }) => {
     const increaseQuantity = () => {
@@ -13,9 +13,9 @@ const QuantitySelector = ({ quantity, onQuantityChange }) => {
 
     return (
         <div className="quantity-selector-container">
-            <Button buttonType='small' onClick={decreaseQuantity}>{`${'<'}`}</Button>
+            <Button buttonType={ BUTTON_TYPE_CLASSES.small } onClick={decreaseQuantity}>{`${'<'}`}</Button>
             <span>{ quantity }</span>
-            <Button buttonType='small' onClick={increaseQuantity}>{`${'>'}`}</Button>
+            <Button buttonType={ BUTTON_TYPE_CLASSES.small } onClick={increaseQuantity}>{`${'>'}`}</Button>
         </div>
     );
 };

@@ -9,7 +9,7 @@ import {
   signInWithGoogleRedirect,
 } from '../../utils/firebase/firebase.utils';
 import FormInput from '../../components/form-input/form-input.component';
-import Button from '../../components/button/button.component';
+import Button, { BUTTON_TYPE_CLASSES } from '../../components/button/button.component';
 
 const defaultformFields = {
   email: '',
@@ -89,8 +89,20 @@ const SignInForm = () => {
       
         <Button type="submit">Sign in</Button>
         <div className="buttons-container">
-          <Button buttonType="google" onClick={ logGoogleUser } type="button">Sign With Google Popup</Button>
-          <Button buttonType="google" onClick={ signInWithGoogleRedirect } type="button">Sign With Google Redirect</Button>
+          <Button
+            buttonType={ BUTTON_TYPE_CLASSES.google }
+            onClick={ logGoogleUser } type="button"
+          >
+            Sign With Google Popup
+          </Button>
+
+          <Button
+            buttonType={ BUTTON_TYPE_CLASSES.google }
+            onClick={ signInWithGoogleRedirect }
+            type="button"
+          >
+            Sign With Google Redirect
+          </Button>
         </div>
       </form>
 
