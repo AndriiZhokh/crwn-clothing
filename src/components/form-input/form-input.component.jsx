@@ -1,4 +1,3 @@
-// import './form-input.styles.scss';
 import { GroupContainer, FormInputElement, FormInputLabel, FormInputLabelShrink } from './form-input.styles';
 
 const FormInput = ({ label, ...otherProps }) => {
