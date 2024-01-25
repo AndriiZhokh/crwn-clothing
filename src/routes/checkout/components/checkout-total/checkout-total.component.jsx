@@ -1,13 +1,15 @@
-import { useContext } from "react";
-import { CartContext } from "../../../../contexts/cart.context";
+import { CheckoutTotalContainer } from './checkout-total.styles';
+
+import { useContext } from 'react';
+import { CartContext } from '../../../../contexts/cart.context';
 
 const CheckoutTotal = () => {
     const { totalPrice } = useContext(CartContext);
 
     return (
-        <div className='checkout-total'>
+        <CheckoutTotalContainer>
             Total: ${ totalPrice }
-        </div>
+        </CheckoutTotalContainer>
     );
 };
 

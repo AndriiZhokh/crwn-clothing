@@ -1,4 +1,4 @@
-import './category-preview.styles.scss';
+import { CategoryTitle, CategoryTitleCenter, ProductsContainer } from './category-preview.styles';
 
 import { Fragment, useEffect, useState } from 'react';
 import ProductCard from '../../../../components/product-card/product-card.component';
@@ -11,14 +11,20 @@ const CategoryPreview = ({ category, categoriesMap, onCategoryTitleClick }) => {
     setProducts(listOfProducts)
   }, [categoriesMap, category, setProducts, onCategoryTitleClick]);
 
+  const CustomCategoryTitle = onCategoryTitleClick ? CategoryTitle : CategoryTitleCenter;
 
   return (
     <Fragment>
-      <h2 className={onCategoryTitleClick ? 'category-title' : 'category-title-center'} onClick={() => onCategoryTitleClick && onCategoryTitleClick(category)}>{ category.toUpperCase() }</h2>
+      <CustomCategoryTitle
+        className={onCategoryTitleClick ? 'category-title' : 'category-title-center'}
+        onClick={() => onCategoryTitleClick && onCategoryTitleClick(category)}
+      >
+        { category.toUpperCase() }
+      </CustomCategoryTitle>
 
-      <div className="products-container">
+      <ProductsContainer>
         { products && products.map(product => <ProductCard key={ product.id } product={ product }></ProductCard>) }
-      </div>
+      </ProductsContainer>
     </Fragment>
   );
 };

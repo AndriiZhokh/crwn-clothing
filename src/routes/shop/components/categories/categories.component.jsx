@@ -1,4 +1,3 @@
-import './categories.styles.scss';
 import { Fragment, useContext, useEffect, useState } from 'react';
 import { CategoriesContext } from '../../../../contexts/categories.context'
 import { useNavigate, useParams } from 'react-router-dom';
