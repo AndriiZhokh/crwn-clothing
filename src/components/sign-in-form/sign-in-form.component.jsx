@@ -1,4 +1,9 @@
-import './sign-in-form.styles.scss';
+import {
+  SignInContainer,
+  SignInContainerTitle,
+  ButtonContainer,
+  ButtonsContainer,
+} from './sign-in-form.styles';
 
 import { useEffect, useState } from 'react';
 import { getRedirectResult } from 'firebase/auth';
@@ -65,8 +70,8 @@ const SignInForm = () => {
   };
 
   return (
-    <div className="sign-in-container">
-      <h2>I already have an account</h2>
+    <SignInContainer>
+      <SignInContainerTitle>I already have an account</SignInContainerTitle>
       <span>Sign in with your email and password</span>
       <form onSubmit={ handleSubmit }>
         <FormInput
@@ -87,26 +92,25 @@ const SignInForm = () => {
           value={ password }
         />
       
-        <Button type="submit">Sign in</Button>
-        <div className="buttons-container">
-          <Button
+        <ButtonContainer type="submit">Sign in</ButtonContainer>
+        <ButtonsContainer>
+          <ButtonContainer
             buttonType={ BUTTON_TYPE_CLASSES.google }
             onClick={ logGoogleUser } type="button"
           >
             Sign With Google Popup
-          </Button>
+          </ButtonContainer>
 
-          <Button
+          <ButtonContainer
             buttonType={ BUTTON_TYPE_CLASSES.google }
             onClick={ signInWithGoogleRedirect }
             type="button"
           >
             Sign With Google Redirect
-          </Button>
-        </div>
+          </ButtonContainer>
+        </ButtonsContainer>
       </form>
-
-    </div>
+    </SignInContainer>
   );
 };
 
