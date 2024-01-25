@@ -61,5 +61,6 @@ export const SmallButton = styled(BaseButton)`
 
   &:hover {
     background-color: rgb(230, 230, 230);
+    border: none;
   }
 `;
