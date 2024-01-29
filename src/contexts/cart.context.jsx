@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useEffect, useState, useReducer } from 'react';
 
 const addCartItem = (cartItems, productToAdd) => {
   const existingCartItem = cartItems.find(item => item.id === productToAdd.id);
@@ -41,11 +41,37 @@ export const CartContext = createContext({
   totalPrice: 0,
 });
 
+export const CART_ACTION_TYPES = {
+  TOGGLE_CART_STATE: 'TOGGLE_CART_STATE',
+};
+
+const cartReducer = (state, action) => {
+  const { type, payload } = action;
+
+  switch (type) {
+    case CART_ACTION_TYPES.TOGGLE_CART_STATE:
+      return {
+        ...state,
+        cartIsOpened: !state.cartIsOpened,
+      }
+    default:
+      throw new Error(`Action ${type} is not defined`);
+  }
+};
+
+const INITIAL_STATE = {
+  cartIsOpened: false,
+};
+
 export const CartProvider = ({ children }) => {
-  const [ cartIsOpened, setCartState ] = useState(false);
+  // TODO: convert to reducers the rest items in this context
+  const [ { cartIsOpened }, dispatch ] = useReducer(cartReducer, INITIAL_STATE);
+
   const [ cartItems, setCartItems ] = useState([]);
   const [ totalItemsQuantity, setTotalItemsQuantity ] = useState(0);
   const [ totalPrice, setTotalPrice ] = useState(0);
+
+  const setCartState = () => dispatch({ type: CART_ACTION_TYPES.TOGGLE_CART_STATE });
 
   const addItemToCart = (productToAdd) => {
     setCartItems(addCartItem(cartItems, productToAdd));
